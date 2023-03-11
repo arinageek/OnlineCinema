@@ -6,6 +6,8 @@ import java.lang.reflect.Type
 
 class TypedResultAdapter : JsonDeserializer<TypedResult<*>> {
 
+    private val defaultErrorCases: Map<String, Type> = DefaultErrorMapping.statusToErrorType
+
     override fun deserialize(
         json: JsonElement,
         typeOfT: Type,
@@ -19,12 +21,14 @@ class TypedResultAdapter : JsonDeserializer<TypedResult<*>> {
         val status = js.getMandatoryKey(STATUS_KEY).asString
         val result = js.getMandatoryKey(RESULT_KEY).asJsonObject
 
-        return if (status == "ok") {
+        return if (status == Status.OK.value) {
             TypedResult.Success(context.deserialize(result, resultType))
         } else {
-            TypedResult.Error(ApiError.UnknownError("Unknown status \"$status\" for type $resultType"))
-            // TODO: handle different error causes
-            //TypedResult.Error(context.deserialize(result, ApiError::class.java))
+            if (status !in defaultErrorCases) {
+                TypedResult.Error(ApiError.UnknownError("Unknown status \"$status\" for type $resultType"))
+            } else {
+                TypedResult.Error(context.deserialize(result, defaultErrorCases[status]))
+            }
         }
     }
 
