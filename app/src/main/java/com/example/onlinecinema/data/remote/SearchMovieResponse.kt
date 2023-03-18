@@ -5,6 +5,6 @@ import com.google.gson.annotations.SerializedName
 
 data class SearchMovieResponse(
     @SerializedName("page") val page: Int,
-    @SerializedName("endReached") val endReached: Boolean?,
+    @SerializedName("endReached") val endReached: Boolean,
     @SerializedName("movies") val movies: List<SearchMovie>,
 )
