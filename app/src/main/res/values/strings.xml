@@ -3,4 +3,6 @@
     <string name="search_placeholder_text">Start typing…</string>
     <string name="poster_image_content_description">Movie poster</string>
     <string name="filter_icon_content_description">Filter icon</string>
+    <string name="movie_description_title">Описание</string>
+    <string name="watch_button_title">Смотреть</string>
 </resources>

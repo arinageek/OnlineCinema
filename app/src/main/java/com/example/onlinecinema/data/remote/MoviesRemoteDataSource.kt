@@ -6,6 +6,8 @@ import javax.inject.Inject
 interface MoviesRemoteDataSource {
 
     suspend fun searchMovies(page: Int, query: String): TypedResult<SearchMovieResponse>
+
+    suspend fun loadMovieInfo(movieId: Int): TypedResult<MovieInfoResponse>
 }
 
 class MoviesRemoteDataSourceImpl @Inject constructor(
@@ -14,5 +16,9 @@ class MoviesRemoteDataSourceImpl @Inject constructor(
 
     override suspend fun searchMovies(page: Int, query: String): TypedResult<SearchMovieResponse> {
         return api.searchMovies(page, query)
+    }
+
+    override suspend fun loadMovieInfo(movieId: Int): TypedResult<MovieInfoResponse> {
+        return api.loadMovieInfo(movieId)
     }
 }

@@ -17,9 +17,14 @@ fun AppNavGraph(
         modifier = modifier,
     ) {
         mainScreen(
-            onMovieClick = {
+            onMovieClick = { movie ->
+                navController.navigateToMovieInfo(movie.id)
+            }
+        )
+        movieInfo(
+            onWatchClicked = {
                 //TODO: replace with navController.navigate(...)
-                Log.d("AppNavGraph", "On movie click")
+                Log.d("AppNavGraph", "On watch click")
             }
         )
     }
