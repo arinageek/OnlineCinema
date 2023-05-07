@@ -1,6 +1,5 @@
 package com.example.onlinecinema.core.navigation
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -22,11 +21,11 @@ fun AppNavGraph(
             }
         )
         movieInfo(
-            onWatchClicked = {
-                //TODO: replace with navController.navigate(...)
-                Log.d("AppNavGraph", "On watch click")
+            onWatchClicked = { movieId ->
+                navController.navigateToMoviePlayer(movieId)
             }
         )
+        moviePlayer()
     }
 
 }

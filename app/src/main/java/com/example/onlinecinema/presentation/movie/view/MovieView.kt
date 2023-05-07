@@ -78,7 +78,8 @@ fun MovieView(
         Column(
             modifier = Modifier
                 .padding(all = 16.dp)
-                .weight(weight = 1f),
+                .weight(weight = 1f)
+                .fillMaxWidth(),
         ) {
             Text(
                 text = movieInfo.title,

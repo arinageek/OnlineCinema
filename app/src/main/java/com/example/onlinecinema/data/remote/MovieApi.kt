@@ -7,13 +7,16 @@ import retrofit2.http.Query
 
 interface MovieApi {
 
-    @GET("1/search/movies")
+    @GET("movies")
     suspend fun searchMovies(
         @Query("page") page: Int,
-        @Query("query") query: String,
+        @Query("title") query: String,
     ) : TypedResult<SearchMovieResponse>
 
-    @GET("1/movie/{id}")
+    @GET("movies/{id}")
     suspend fun loadMovieInfo(@Path("id") movieId: Int) : TypedResult<MovieInfoResponse>
+
+    @GET("movies/{id}/player")
+    suspend fun loadPlayer(@Path("id") movieId: Int) : TypedResult<PlayerResponse>
 
 }

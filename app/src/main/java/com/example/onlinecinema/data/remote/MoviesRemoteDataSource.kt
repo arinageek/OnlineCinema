@@ -8,6 +8,8 @@ interface MoviesRemoteDataSource {
     suspend fun searchMovies(page: Int, query: String): TypedResult<SearchMovieResponse>
 
     suspend fun loadMovieInfo(movieId: Int): TypedResult<MovieInfoResponse>
+
+    suspend fun loadPlayer(movieId: Int): TypedResult<PlayerResponse>
 }
 
 class MoviesRemoteDataSourceImpl @Inject constructor(
@@ -20,5 +22,9 @@ class MoviesRemoteDataSourceImpl @Inject constructor(
 
     override suspend fun loadMovieInfo(movieId: Int): TypedResult<MovieInfoResponse> {
         return api.loadMovieInfo(movieId)
+    }
+
+    override suspend fun loadPlayer(movieId: Int): TypedResult<PlayerResponse> {
+        return api.loadPlayer(movieId)
     }
 }

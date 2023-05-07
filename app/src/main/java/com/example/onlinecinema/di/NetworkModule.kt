@@ -30,7 +30,7 @@ object NetworkModule {
 
         return Retrofit.Builder()
             .client(client)
-            .baseUrl("https://catfact.ninja/") // TODO: replace with real url
+            .baseUrl("http://16.16.74.104:8080/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(MovieApi::class.java)
